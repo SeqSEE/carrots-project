@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+group = 'com.jumbo1907'
+version = '1.0-SNAPSHOT'
+archivesBaseName = 'carrots'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+    mappings channel: 'stable', version: '60-1.15'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                carrots {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                carrots {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'carrots', '--all', '--output', file('src/generated/resources/')
+            mods {
+                carrots {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.2-33.0.61'
+    implementation files('C:\\Users\\Xander\\MultiMC\\instances\\barritone\\.minecraft\\mods\\baritone-api-forge-1.6.1.jar')
+}
+
+jar.finalizedBy('reobfJar')
+

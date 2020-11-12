@@ -1,0 +1,21 @@
+
+    modLoader="javafml"
+    loaderVersion="[33,)"
+    license="Mojang all rights reserved"
+
+    [[mods]]
+      modId="carrot"
+      version="1.0.0.0"
+      displayName="Carrots"
+      credits="I'd like to thank my mother and father."
+      authors="Author"
+      description='''
+      Yummy
+      '''
+
+    [[dependencies.baritoe]]
+    modId="baritoe"
+    mandatory=true
+    versionRange="[33,)"
+    ordering="NONE"
+    side="BOTH"
